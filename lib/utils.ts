@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
 /* eslint-disable no-prototype-builtins */
 import { type ClassValue, clsx } from "clsx";
-import qs from "qs";
+import Qs from "qs";
 import { twMerge } from "tailwind-merge";
 
 import { aspectRatioOptions } from "@/constants";
@@ -58,9 +58,9 @@ export const formUrlQuery = ({
   key,
   value,
 }: FormUrlQueryParams) => {
-  const params = { ...qs.parse(searchParams.toString()), [key]: value };
+  const params = { ...Qs.parse(searchParams.toString()), [key]: value };
 
-  return `${window.location.pathname}?${qs.stringify(params, {
+  return `${window.location.pathname}?${Qs.stringify(params, {
     skipNulls: true,
   })}`;
 };
@@ -70,7 +70,7 @@ export function removeKeysFromQuery({
   searchParams,
   keysToRemove,
 }: RemoveUrlQueryParams) {
-  const currentUrl = qs.parse(searchParams);
+  const currentUrl = Qs.parse(searchParams);
 
   keysToRemove.forEach((key) => {
     delete currentUrl[key];
@@ -81,7 +81,7 @@ export function removeKeysFromQuery({
     (key) => currentUrl[key] == null && delete currentUrl[key]
   );
 
-  return `${window.location.pathname}?${qs.stringify(currentUrl)}`;
+  return `${window.location.pathname}?${Qs.stringify(currentUrl)}`;
 }
 
 // DEBOUNCE
